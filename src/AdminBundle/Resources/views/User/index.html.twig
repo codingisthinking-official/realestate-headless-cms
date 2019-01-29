@@ -1,0 +1,47 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block currentItem %}users{% endblock %}
+{% block content %}
+    <div class="content--container">
+        <div class="container--white">
+            <table class="table table-responsive table-hover">
+                <thead>
+                    <tr class="active">
+                        <th>Login</th>
+                        <th>E-mail</th>
+                        <th>Last seen</th>
+                        <th>Groups</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.lastLogin|date('d.m.Y G:i') }}</td>
+                            <td>
+                                {{ user.roles|join(', ') }}
+                            </td>
+                            <td class="text-right">
+                                {% if app.user != user %}
+                                    <a href="{{ url('admin.users.edit', {'id': user.id}) }}" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i> Edit</a>
+                                    {% if user.locked %}
+                                        <a href="{{ url('admin.users.lock', {'id': user.id}) }}" class="btn btn-default btn-sm"><i class="fa fa-lock"></i> Unlock</a>
+                                    {% else %}
+                                        <a href="{{ url('admin.users.lock', {'id': user.id}) }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Block</a>
+                                    {% endif %}
+                                    <a href="{{ url('admin.users.delete', {'id': user.id}) }}" class="btn btn-danger btn-sm"><i class="fa fa-minus"></i> Remove</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="navigation text-center">
+                {{ knp_pagination_render(users) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

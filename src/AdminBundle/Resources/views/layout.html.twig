@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Administracja</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/assets/css/admin.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/bower_components/components-font-awesome/css/font-awesome.min.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="sidebar">
+            <div class="mobile-sidebar">
+                <i class="fa fa-bars"></i>
+            </div>
+            <h1><i class="fa fa-arrow-circle-down"></i> Home</h1>
+            <ul>
+                <li>
+                    {% if block('currentItem') != 'dashboard' %}
+                        <a href="{{ url('admin.dashboard') }}"><i class="fa fa-home"></i> Dashboard</a>
+                    {% else %}
+                        <a class="current" href="{{ url('admin.dashboard') }}"><i class="fa fa-home"></i> Dashboard</a>
+                    {% endif %}
+                </li>
+            </ul>
+            <h1><i class="fa fa-sitemap"></i> Content</h1>
+            {{ render(controller('AdminBundle:TaxonomyItem:sidebarList', {'display': ['Page', 'Attachment', 'Contact'], 'currentItem': block('currentItem')})) }}
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <h1><i class="fa fa-cog"></i> Settings</h1>
+                <ul>
+                    {% if block('currentItem') != 'taxonomies' %}
+                        <li><a href="{{ url('admin.taxonomies.categories') }}"><i class="fa fa-folder"></i> Taxonomies</a></li>
+                    {% else %}
+                        <li><a class="current" href="{{ url('admin.taxonomies.categories') }}"><i class="fa fa-folder"></i> Taxonomies</a></li>
+                    {% endif %}
+                    {% if block('currentItem') != 'users' %}
+                        <li><a href="{{ url('admin.users') }}"><i class="fa fa-user"></i> Users</a></li>
+                    {% else %}
+                        <li><a class="current" href="{{ url('admin.users') }}"><i class="fa fa-user"></i> Users</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="content">
+            {% for label, flashes in app.session.flashbag.all %}
+                {% for flash in flashes %}
+                    <div class="alert alert-{{ label }}">
+                        {{ flash }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <img src="/assets/img/logo.png" alt="Wiseweb CMS" class="wiseweb-logo" style="margin-bottom: 20px;" />
+            <div class="nav">
+                {{ render(controller('AdminBundle:Default:breadcrumb')) }}
+            </div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+    <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
+    <script type="text/javascript" src="/assets/js/admin.js"></script>
+</body>
+</html>

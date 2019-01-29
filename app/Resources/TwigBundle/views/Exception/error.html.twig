@@ -1,0 +1,9 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>{{ status_code }}</h1>
+    <p>
+        {{ status_text }}
+    </p>
+    <a href="{{ url('homepage') }}">Powrot na stronę główną</a>
+{% endblock %}

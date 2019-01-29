@@ -1,0 +1,61 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block currentItem %}taxonomies{% endblock %}
+{% block content %}
+    <div class="content--container">
+        <div class="container--white">
+            <div class="action-list">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> New Custom Field</button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                      <li><a href="{{ url('admin.taxonomies.new_field', {'id': taxonomy.id, 'type': 0}) }}">{{ 'taxonomyCategoryFieldsForm.type.string'|trans }}</a></li>
+                      <li><a href="{{ url('admin.taxonomies.new_field', {'id': taxonomy.id, 'type': 1}) }}">{{ 'taxonomyCategoryFieldsForm.type.text'|trans }}</a></li>
+                      <li><a href="{{ url('admin.taxonomies.new_field', {'id': taxonomy.id, 'type': 7}) }}">{{ 'taxonomyCategoryFieldsForm.type.attachment'|trans }}</a></li>
+                      <li><a href="{{ url('admin.taxonomies.new_field', {'id': taxonomy.id, 'type': 2}) }}">{{ 'taxonomyCategoryFieldsForm.type.image'|trans }}</a></li>
+                      <li><a href="{{ url('admin.taxonomies.new_field', {'id': taxonomy.id, 'type': 3}) }}">{{ 'taxonomyCategoryFieldsForm.type.gallery'|trans }}</a></li>
+                      <li><a href="{{ url('admin.taxonomies.new_field', {'id': taxonomy.id, 'type': 5}) }}">{{ 'taxonomyCategoryFieldsForm.type.dropdown'|trans }}</a></li>
+                      <li><a href="{{ url('admin.taxonomies.new_field', {'id': taxonomy.id, 'type': 6}) }}">{{ 'taxonomyCategoryFieldsForm.type.yesno'|trans }}</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="{{ url('admin.taxonomies.new_field', {'id': taxonomy.id, 'type': 4}) }}">{{ 'taxonomyCategoryFieldsForm.type.reference'|trans }}</a></li>
+                      <li><a href="{{ url('admin.taxonomies.new_field', {'id': taxonomy.id, 'type': 8}) }}">{{ 'taxonomyCategoryFieldsForm.type.reference_array'|trans }}</a></li>
+                  </ul>
+                </div>
+            </div>
+            <br/>
+            {% if taxonomy.fields|length == 0 %}
+                <div class="alert alert-info">No custom fields defined for this taxonomy.</div>
+            {% else %}
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr class="active">
+                            <th>Label</th>
+                            <th>Key</th>
+                            <th>Type</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for field in taxonomy.fields %}
+                            <tr>
+                                <td>{{ field.label }}</td>
+                                <td>{{ field.slug }}</td>
+                                <td>
+                                    {{ (field.keyType)|trans }}
+                                    {% if field.type == 4 %}({{ field.settings }}){% endif %}
+                                    {% if field.type == 8 %}({{ field.settings }}){% endif %}
+                                </td>
+                                <td class="text-right">
+                                    <a href="{{ url('admin.taxonomies.edit_field', {'id': taxonomy.id, 'field': field.id}) }}" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> Edit field</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

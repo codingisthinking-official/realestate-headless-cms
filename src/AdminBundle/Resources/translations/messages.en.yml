@@ -1,0 +1,49 @@
+taxonomyCategoryForm.label: "Taxonomy label"
+taxonomyCategoryForm.slug: "MySQL entity (np. CmsBundle:Page)"
+taxonomyCategoryForm.icon: "Icon [fa-*]"
+
+taxonomyCategoryFieldsForm.label: "Label"
+taxonomyCategoryFieldsForm.slug: "Key"
+taxonomyCategoryFieldsForm.type: "Type"
+taxonomyCategoryFieldsForm.required: "Is required?"
+taxonomyCategoryFieldsForm.searchable: "Index"
+taxonomyCategoryFieldsForm.visible: "Table visible"
+
+taxonomyCategoryFieldsForm.type.string: "Input"
+taxonomyCategoryFieldsForm.type.text: "Textarea"
+taxonomyCategoryFieldsForm.type.image: "Single Photo"
+taxonomyCategoryFieldsForm.type.gallery: "Photo Gallery"
+taxonomyCategoryFieldsForm.type.attachment: "Attachment"
+taxonomyCategoryFieldsForm.type.keyvalue: "Key-value table storage"
+
+taxonomyCategoryFieldsForm.type.reference: "Taxonomy reference"
+taxonomyCategoryFieldsForm.type.reference_array: "List of taxonomy references (one-to-many)"
+taxonomyCategoryFieldsForm.type.dropdown: "Dropdown"
+taxonomyCategoryFieldsForm.type.yesno: "Yes/No"
+taxonomyCategoryFieldsForm.type.auto: "Generated automatically"
+
+taxonomyCategoryFieldsForm.settings.dropdown: "Comma separated, for example: (aa,bb,cc)"
+taxonomyCategoryFieldsForm.settings.tinymce: "as TinyMCE"
+taxonomyCategoryFieldsForm.settings.reference: "Taxonomy Reference"
+
+taxonomyCategoryFieldsForm.settings.generated: "Type"
+taxonomyCategoryFieldsForm.settings.generated.date: "Current date and time"
+taxonomyCategoryFieldsForm.settings.generated.user: "Current user"
+
+userForm.roles: "Groups"
+
+taxonomyItemForm.title: "Title"
+taxonomyItemForm.category: "Taxonomy"
+
+taxonomyItemSearchForm.title: "Search"
+taxonomyItemSearchForm.submit: "Search"
+
+imageForm.image: "Photo"
+imageForm.submit: "Upload"
+
+taxonomyCategoryForm.label: 'Taxonomy label'
+taxonomyCategoryForm.slug: 'Taxonomy slug in api'
+taxonomyCategoryForm.icon: 'Taxonomy icon'
+
+user.email: "E-mail address"
+user.submit: "Change e-mail"

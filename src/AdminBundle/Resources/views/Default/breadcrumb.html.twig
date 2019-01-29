@@ -1,0 +1,9 @@
+<div class="nav">
+    <ul class="content--breadcrumb">
+        {% for path in breadcrumb.paths %}
+            <li>
+                <a href="{{ path.path }}">{{ path.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

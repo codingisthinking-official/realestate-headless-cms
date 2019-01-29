@@ -1,0 +1,42 @@
+taxonomyCategoryForm.label: "Etykieta taksonomii"
+taxonomyCategoryForm.slug: "Encja (np. CmsBundle:Page)"
+taxonomyCategoryForm.icon: "Ikona [fa-*]"
+
+taxonomyCategoryFieldsForm.label: "Etykieta pola"
+taxonomyCategoryFieldsForm.slug: "Klucz (używany jako key w widoku)"
+taxonomyCategoryFieldsForm.type: "Typ"
+taxonomyCategoryFieldsForm.required: "Czy jest daną wymaganą?"
+taxonomyCategoryFieldsForm.searchable: "Indeksowane - pole brane pod uwagę podczas wyszukiwania"
+taxonomyCategoryFieldsForm.visible: "Widoczne w tabeli (możliwe sortowanie po tej danej)" 
+
+taxonomyCategoryFieldsForm.type.string: "Pole typu input"
+taxonomyCategoryFieldsForm.type.text: "Pole typu textarea"
+taxonomyCategoryFieldsForm.type.image: "Pojedyncze zdjęcie"
+taxonomyCategoryFieldsForm.type.gallery: "Galeria zdjęć"
+taxonomyCategoryFieldsForm.type.attachment: "Załącznik (dowolny plik)"
+taxonomyCategoryFieldsForm.type.keyvalue: "Tabela key-value"
+
+taxonomyCategoryFieldsForm.type.reference: "Referencja do innej taksonomii"
+taxonomyCategoryFieldsForm.type.reference_array: "Lista referencji do innej taksonomii"
+taxonomyCategoryFieldsForm.type.dropdown: "Pole wyboru (dropdown)"
+taxonomyCategoryFieldsForm.type.yesno: "Tak/Nie"
+taxonomyCategoryFieldsForm.type.auto: "Generowane automatycznie"
+
+taxonomyCategoryFieldsForm.settings.dropdown: "Oddziel po przecinku możliwości, np. (aa,bb,cc)"
+taxonomyCategoryFieldsForm.settings.tinymce: "Pole jako edytor TinyMCE"
+taxonomyCategoryFieldsForm.settings.reference: "Referencja do taksonomii"
+
+taxonomyCategoryFieldsForm.settings.generated: "Rodzaj generatora"
+taxonomyCategoryFieldsForm.settings.generated.date: "Aktualna data"
+taxonomyCategoryFieldsForm.settings.generated.user: "Zalogowany użytkownik"
+
+userForm.roles: "Role (grupy)"
+
+taxonomyItemForm.title: "Tytuł / nazwa"
+taxonomyItemForm.category: "Taksonomia"
+
+taxonomyItemSearchForm.title: "Przeszukaj"
+taxonomyItemSearchForm.submit: "Wyszukaj"
+
+imageForm.image: "Zdjęcie"
+imageForm.submit: "Uploaduj"

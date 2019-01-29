@@ -1,0 +1,91 @@
+{% form_theme searchForm 'bootstrap_3_horizontal_layout.html.twig' %}
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block currentItem %}taxonomy.{{ taxonomy.slug }}{% endblock %}
+{% block content %}
+    <div class="content--container">
+        <div class="container--white">
+            {% if taxonomy.slug not in ['CmsBundle:ForumThread', 'CmsBundle:ForumReply', 'CmsBundle:BlogComment'] %}
+                <div class="action-list">
+                    <a class="btn btn-default" href="{{ url('admin.new_taxonomy_item', {'id': taxonomy.id}) }}"><i class="fa fa-plus"></i> Add new</a>
+                </div>
+            {% endif %}
+            {% if pager|length == 0 %}
+                <div class="search-container">
+                    {{ form(searchForm) }}
+                </div>
+                <div class="alert alert-info">No entries.</div>
+            {% else %}
+                <div class="search-container">
+                    {{ form(searchForm) }}
+                </div>
+                <table class="table table-responsive table-hover table-condensed">
+                    <thead>
+                    <tr class="active">
+                        <th>Title</th>
+                        {% for visibleField in taxonomy.visibleFields %}
+                            <th class="visible-md visible-lg">{{ visibleField.label }}</th>
+                        {% endfor %}
+                        <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in pager %}
+                        <tr>
+                            <td>
+                                {{ item.title }}
+                                {% for field in taxonomy.fields if (field.type == 3) %}
+                                    <div>
+                                        <a href="#" class="btn btn-xs"><i class="fa fa-picture-o"></i> {{ field.label }}</a>
+                                    </div>
+                                {% endfor %}
+                            </td>
+                            {% for visibleField in taxonomy.visibleFields %}
+                                {% if visibleField.type == 2 %}
+                                    <td class="visible-md visible-lg">
+                                        {% if attribute(item, visibleField.slug)|length > 0 %}
+                                            {% if 'http://' in attribute(item, visibleField.slug) or 'https://' in attribute(item, visibleField.slug) %}
+                                                <a href="{{ attribute(item, visibleField.slug) }}" class="btn btn-xs"><i class="fa fa-eye"></i> open</a>
+                                            {% else %}
+                                                <a href="/{{ attribute(item, visibleField.slug) }}" class="btn btn-xs"><i class="fa fa-eye"></i> open</a>
+                                                <span style="font-size: 12px">({{ app.request.getSchemeAndHttpHost() }}/{{ attribute(item, visibleField.slug) }})</span>
+                                            {% endif %}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                {% elseif (visibleField.type == 6) %}
+                                    <td class="visible-md visible-lg">
+                                        {% if attribute(item, visibleField.slug)|length > 0 %}
+                                            <i class="fa fa-check"></i>
+                                        {% else %}
+                                            <i class="fa fa-times"></i>
+                                        {% endif %}
+                                    </td>
+                                {% elseif (visibleField.type == 7) %}
+                                    <td class="visible-md visible-lg">
+                                        {% if attribute(item, visibleField.slug)|length > 0 %}
+                                            <a href="/{{ attribute(item, visibleField.slug) }}" class="btn btn-xs"><i class="fa fa-download"></i> download</a>
+                                            <span style="font-size: 12px">({{ app.request.getSchemeAndHttpHost() }}/{{ attribute(item, visibleField.slug) }})</span>
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                {% else %}
+                                    <td class="visible-md visible-lg">{{ attribute(item, visibleField.slug) }}</td>
+                                {% endif %}
+                            {% endfor %}
+                            <td class="text-right">
+                                <a href="{{ url('admin.edit_taxonomy_item', {'taxonomy': taxonomy.id, 'id': item.id}) }}" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="navigation text-center">
+                    {{ knp_pagination_render(pager) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

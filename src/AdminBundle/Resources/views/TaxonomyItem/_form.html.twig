@@ -1,0 +1,81 @@
+<form method="post" enctype="multipart/form-data" novalidate>
+    <div class="form-actions">
+        <button type="submit" name="action" value="save-and-continue" class="btn btn-default"><i class="fa fa-floppy-o"></i> Save and continue</button>
+        <button type="submit" name="action" value="save" class="btn btn-success"><i class="fa fa-floppy-o"></i> Save</button>
+    </div>
+    <br/>
+    {{ form_row(form._token) }}
+    {{ form_row(form.title) }}
+    {% for field in taxonomy.fields if (field.type != 3) %}
+        {% if (field.type == 1 and field.settings == 1) %}
+            {{ form_row(form[field.slug], {'attr': {'class': 'init-tinymce', 'rows': 10}}) }}
+        {% elseif (field.type == 9) %}
+            <div class="container-key-value--init">
+                {{ form_row(form[field.slug]) }}
+                <table class="table table-responsive" style="position: relative; top: -10px;">
+                    <thead>
+                        <th>Key</th>
+                        <th>Value</th>
+                        <th></th>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div>
+                    <a href="#" class="btn btn-add-item btn-info btn-sm">
+                        <i class="fa fa-plus"></i> add
+                    </a>
+                </div>
+                <br/>
+            </div>
+        {% else %}
+            {{ form_row(form[field.slug]) }}
+        {% endif %}
+        {% if (isNew == false) and (field.type == 2) and (attribute(taxonomyItem, field.slug)|length > 0) %}
+            <div class="form-photo-preview">
+                <span>Current photo:</span>
+                {% if 'http://' in attribute(taxonomyItem, field.slug) or 'https://' in attribute(taxonomyItem, field.slug) %}
+                    <img src="{{ attribute(taxonomyItem, field.slug) }}" />
+                {% else %}
+                    <img src="/{{ attribute(taxonomyItem, field.slug) }}" />
+                {% endif %}
+                <br/>
+                <a href="{{ url('admin.taxonomies.delete_item_field', {'item': taxonomyItem.id, 'path': taxonomy.id, 'field': field.slug }) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> remove</a>
+            </div>
+        {% endif %}
+        {% if (isNew == false) and (field.type == 7) and (attribute(taxonomyItem, field.slug)|length > 0) %}
+            <div class="form-photo-preview">
+                <span>Current attachment:</span>
+                <a href="/{{ attribute(taxonomyItem, field.slug) }}" class="btn btn-default"><i class="fa fa-download"></i> download</a>
+                <br/>
+                <a href="{{ url('admin.taxonomies.delete_item_field', {'item': taxonomyItem.id, 'path': taxonomy.id, 'field': field.slug }) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> remove</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <div class="form-actions">
+        <button type="submit" name="action" value="save-and-continue" class="btn btn-default"><i class="fa fa-floppy-o"></i> Save and continue</button>
+        <button type="submit" name="action" value="save" class="btn btn-success"><i class="fa fa-floppy-o"></i> Save</button>
+    </div>
+</form>
+<script type="text/html" id="template-key-value-row">
+    <tr>
+        <td class="key">
+            <input type="text" name="item['key'][]" class="form-control">
+        </td>
+        <td class="value">
+            <input type="text" name="item['value'][]" class="form-control">
+        </td>
+        <td style="width: 40px; text-align: center;">
+            <a class="btn btn-danger btn-remove-item btn-xs" href="#" style="color: #fff;">
+                x
+            </a>
+        </td>
+    </tr>
+</script>
+{% if taxonomy.id == 8 or taxonomy.id == 7 or taxonomy.id == 2 or taxonomy.id == 13 %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+    <script>
+        var simplemde = new SimpleMDE();
+    </script>
+{% endif %}

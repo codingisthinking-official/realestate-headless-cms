@@ -1,0 +1,12 @@
+parameters: ~
+services:
+    repository.taxonomy_category:
+        class: AppBundle\Repository\TaxonomyCategoryRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: 
+            - 'AppBundle:TaxonomyCategory'
+
+    manager.taxonomy:
+        class: AppBundle\Services\TaxonomyManager
+        arguments: [@repository.taxonomy_category, @security.context]

@@ -1,0 +1,19 @@
+<ul>
+    {% if display|length > 0 %}
+        {% for taxonomy in taxonomies if taxonomy.label in display %}
+            {% if ('taxonomy.' ~ taxonomy.slug) == currentItem %}
+                <li><a class="current" href="{{ url('admin.taxonomy', {'id': taxonomy.id}) }}"><i class="fa fa-{{ taxonomy.icon }}"></i> {{ taxonomy.label }}</a></li>
+            {% else %}
+                <li><a href="{{ url('admin.taxonomy', {'id': taxonomy.id}) }}"><i class="fa fa-{{ taxonomy.icon }}"></i> {{ taxonomy.label }}</a></li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for taxonomy in taxonomies %}
+            {% if ('taxonomy.' ~ taxonomy.slug) == currentItem %}
+                <li><a class="current" href="{{ url('admin.taxonomy', {'id': taxonomy.id}) }}"><i class="fa fa-{{ taxonomy.icon }}"></i> {{ taxonomy.label }}</a></li>
+            {% else %}
+                <li><a href="{{ url('admin.taxonomy', {'id': taxonomy.id}) }}"><i class="fa fa-{{ taxonomy.icon }}"></i> {{ taxonomy.label }}</a></li>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</ul>
