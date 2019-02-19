@@ -46,18 +46,7 @@ class TaxonomyItemController extends Controller
                 ->setParameter('query', '%' . $data['title'] . '%')
                 ->orderBy('i.id', 'desc');
         } else {
-            if ($taxonomy->getId() == 8) {
-                $taxonomyItemList = $taxonomyItemList
-                    ->createQueryBuilder('i')
-                    ->leftJoin('i.page', 'p')
-                    ->orderBy('p.title', 'asc');
-            } else if ($taxonomy->getId() == 21) {
-                $taxonomyItemList = $taxonomyItemList
-                    ->createQueryBuilder('i')
-                    ->orderBy('i.title', 'asc');
-            } else {
-                $taxonomyItemList = $taxonomyItemList->findBy([], ['id' => 'desc']);
-            }
+            $taxonomyItemList = $taxonomyItemList->findBy([], ['id' => 'desc']);
         }
 
         $pager = $paginator->paginate(
@@ -225,6 +214,7 @@ class TaxonomyItemController extends Controller
     {
         return [
             'taxonomies' =>  $this->getTaxonomyManager()->getTaxonomyCategories(),
+            'dataSources' => $this->getDoctrine()->getRepository('AppBundle:DataSource')->findAll(),
             'currentItem' => $currentItem,
             'display' => $display,
         ];

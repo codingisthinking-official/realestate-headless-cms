@@ -2,7 +2,15 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,900italic,900,700italic,700,400italic,300italic,300,100italic,100&subset=latin,latin-ext);
 
 body {
-    background: url(../img/background.jpg) no-repeat;
+    background-image: linear-gradient(90deg, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);
+    background-image: -moz-linear-gradient(left, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);
+    background-image: -webkit-linear-gradient(left, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);
+    background-image: -o-linear-gradient(left, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);
+    background-image: -ms-linear-gradient(left, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);background-image: linear-gradient(90deg, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);
+    background-image: -moz-linear-gradient(left, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);
+    background-image: -webkit-linear-gradient(left, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);
+    background-image: -o-linear-gradient(left, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);
+    background-image: -ms-linear-gradient(left, rgb(5, 70, 103) 24%, rgb(28, 162, 252) 100%);
     margin: 0;
     padding: 0;
     font-family: 'Lato', sans-serif;

@@ -48,7 +48,6 @@
                                                 <a href="{{ attribute(item, visibleField.slug) }}" class="btn btn-xs"><i class="fa fa-eye"></i> open</a>
                                             {% else %}
                                                 <a href="/{{ attribute(item, visibleField.slug) }}" class="btn btn-xs"><i class="fa fa-eye"></i> open</a>
-                                                <span style="font-size: 12px">({{ app.request.getSchemeAndHttpHost() }}/{{ attribute(item, visibleField.slug) }})</span>
                                             {% endif %}
                                         {% else %}
                                             -

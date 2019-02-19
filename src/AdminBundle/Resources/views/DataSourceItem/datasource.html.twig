@@ -1,0 +1,44 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block currentItem %}datasource.{{ datasource.slug }}{% endblock %}
+{% block content %}
+    <div class="content--container">
+        <div class="container--white">
+            {% if not error %}
+                <table class="table table-responsive table-hover table-condensed">
+                    <thead>
+                    <tr class="active">
+                        {% for field in datasource.fieldsSplitted %}
+                            <th class="visible-md visible-lg">{{ ('datasource.' ~ datasource.slug ~ '.' ~ field)|trans }}</th>
+                        {% endfor %}
+                        <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in response.data %}
+                        <tr>
+                            {% for field in datasource.fieldsSplitted %}
+                                <td>
+                                    {% if item[field] is defined %}
+                                        {{ item[field] }}
+                                    {% else %}
+                                        <span class="label label-danger">no "{{ field }}" field.</span>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                            <td>
+                                Actions
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="navigation text-center">
+                    {{ knp_pagination_render(pager) }}
+                </div>
+            {% else %}
+                <div class="alert alert-danger">Error while fetching data from the DataSource.</div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

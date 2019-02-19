@@ -7,12 +7,26 @@
                 <li><a href="{{ url('admin.taxonomy', {'id': taxonomy.id}) }}"><i class="fa fa-{{ taxonomy.icon }}"></i> {{ taxonomy.label }}</a></li>
             {% endif %}
         {% endfor %}
+        {% for datasource in dataSources if datasource.label in display %}
+            {% if ('datasource.' ~ datasource.slug) == currentItem %}
+                <li><a class="current" href="{{ url('admin.datasource', {'id': datasource.id}) }}"><i class="fa fa-{{ datasource.icon }}"></i> {{ datasource.label }}</a></li>
+            {% else %}
+                <li><a href="{{ url('admin.datasource', {'id': datasource.id}) }}"><i class="fa fa-{{ datasource.icon }}"></i> {{ datasource.label }}</a></li>
+            {% endif %}
+        {% endfor %}
     {% else %}
         {% for taxonomy in taxonomies %}
             {% if ('taxonomy.' ~ taxonomy.slug) == currentItem %}
                 <li><a class="current" href="{{ url('admin.taxonomy', {'id': taxonomy.id}) }}"><i class="fa fa-{{ taxonomy.icon }}"></i> {{ taxonomy.label }}</a></li>
             {% else %}
                 <li><a href="{{ url('admin.taxonomy', {'id': taxonomy.id}) }}"><i class="fa fa-{{ taxonomy.icon }}"></i> {{ taxonomy.label }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% for datasource in dataSources %}
+            {% if ('datasource.' ~ datasource.slug) == currentItem %}
+                <li><a class="current" href="{{ url('admin.datasource', {'id': datasource.id}) }}"><i class="fa fa-{{ datasource.icon }}"></i> {{ datasource.label }}</a></li>
+            {% else %}
+                <li><a href="{{ url('admin.datasource', {'id': datasource.id}) }}"><i class="fa fa-{{ datasource.icon }}"></i> {{ datasource.label }}</a></li>
             {% endif %}
         {% endfor %}
     {% endif %}

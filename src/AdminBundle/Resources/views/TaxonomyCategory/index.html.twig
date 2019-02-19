@@ -5,11 +5,14 @@
     <div class="content--container">
         <div class="container--white">
             <div class="action-list">
-                <a class="btn btn-default" href="{{ url('admin.taxonomies.new_category') }}"><i class="fa fa-plus"></i> New Taxonomy</a>
+                <a class="btn btn-default" href="{{ url('admin.taxonomies.new_category') }}"><i class="fa fa-plus"></i> New Entity Taxonomy</a>
+                <a style="margin-left: 10px;" class="btn btn-default" href="{{ url('admin.datasources.new') }}"><i class="fa fa-database"></i> New DataSource</a>
             </div>
             <br/>
+            <h1><i class="fa fa-align-center"></i> Entity Taxonomies</h1>
+            <br>
             {% if taxonomyCategoryList|length == 0 %}
-                <div class="alert alert-info">No Taxonomies added.</div>
+                <div class="alert alert-info">No Entity taxonomies.</div>
             {% else %}
                 <table class="table table-responsive table-hover">
                     <thead>
@@ -32,6 +35,34 @@
                                 </td>
                             </tr>
                         {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+            <h1><i class="fa fa-database"></i> DataSources</h1>
+            <br>
+            {% if dataSourceList|length == 0 %}
+                <div class="alert alert-info">No DataSources.</div>
+            {% else %}
+                <table class="table table-responsive table-hover">
+                    <thead>
+                    <tr class="active">
+                        <th>Title</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for datasource in dataSourceList %}
+                        <tr>
+                            <td class="taxonomy-category-name">
+                                <i class="fa fa-{{ datasource.icon }}"></i>
+                                <strong>{{ datasource.label }}</strong> ({{ datasource.slug }})<br/>
+                                <small>(custom fields: <strong>{{ datasource.fields }}</strong>)</small>
+                            </td>
+                            <td class="text-right">
+                                <a href="{{ url('admin.datasources.edit', {'id': datasource.id}) }}" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             {% endif %}

@@ -23,8 +23,8 @@
                     {% endif %}
                 </li>
             </ul>
-            <h1><i class="fa fa-sitemap"></i> Content</h1>
-            {{ render(controller('AdminBundle:TaxonomyItem:sidebarList', {'display': ['Page', 'Attachment', 'Contact'], 'currentItem': block('currentItem')})) }}
+            <h1><i class="fa fa-sitemap"></i> E-commerce</h1>
+            {{ render(controller('AdminBundle:TaxonomyItem:sidebarList', {'display': ['Blog Post DataSource'], 'currentItem': block('currentItem')})) }}
             {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <h1><i class="fa fa-cog"></i> Settings</h1>
                 <ul>
@@ -49,9 +49,9 @@
                     </div>
                 {% endfor %}
             {% endfor %}
-            <img src="/assets/img/logo.png" alt="Wiseweb CMS" class="wiseweb-logo" style="margin-bottom: 20px;" />
-            <div class="nav">
+            <div class="navi">
                 {{ render(controller('AdminBundle:Default:breadcrumb')) }}
+                <a class="btn btn-danger btn-logout" href="{{ url('fos_user_security_logout') }}"><i class="fa fa-power-off"></i></a>
             </div>
             {% block content %}
             {% endblock %}

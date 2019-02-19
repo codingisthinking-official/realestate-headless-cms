@@ -30,6 +30,12 @@ taxonomyCategoryFieldsForm.settings.generated: "Type"
 taxonomyCategoryFieldsForm.settings.generated.date: "Current date and time"
 taxonomyCategoryFieldsForm.settings.generated.user: "Current user"
 
+dataSourceForm.label: "DataSource label"
+dataSourceForm.slug: "DataSource slug"
+dataSourceForm.icon: "DataSource icon (fa-*)"
+dataSourceForm.url: "DataSource Api Url"
+dataSourceForm.keys: "DataSource comma separated fields"
+
 userForm.roles: "Groups"
 
 taxonomyItemForm.title: "Title"
@@ -47,3 +53,7 @@ taxonomyCategoryForm.icon: 'Taxonomy icon'
 
 user.email: "E-mail address"
 user.submit: "Change e-mail"
+
+datasource.blog-post.id: "Blog ID"
+datasource.blog-post.title: "Title"
+datasource.blog-post.short_description: "Short description"

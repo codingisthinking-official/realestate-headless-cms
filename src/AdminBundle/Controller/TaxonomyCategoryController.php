@@ -19,9 +19,14 @@ class TaxonomyCategoryController extends Controller
     {
         $this->get('admin.breadcrumb')->attach('List of Taxonomies', $this->generateUrl('admin.taxonomies.categories'));
         $taxonomyCategoryList = $this->getTaxonomyManager()->getTaxonomyCategories();
+        $dataSourceList = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:DataSource')->findBy([], ['id' => 'desc']);
 
         return [
             'taxonomyCategoryList' => $taxonomyCategoryList,
+            'dataSourceList' => $dataSourceList,
         ];
     }
 
