@@ -33,4 +33,18 @@ class ApiController extends Controller
         return new JsonResponse($pages, 200);
     }
 
+    /**
+     * @Route("/api/wording/", name="api.wording")
+     */
+    public function wordingAction(Request $request)
+    {
+        $wordingCollection = $this->getDoctrine()->getRepository('CmsBundle:Wording')->findAll();
+
+        $wordings = [];
+        foreach ($wordingCollection as $wording) {
+            $wordings[] = $wording->toArray();
+        }
+
+        return new JsonResponse($wordings, 200);
+    }
 }
