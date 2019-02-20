@@ -18,4 +18,19 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ApiController extends Controller
 {
+    /**
+     * @Route("/api/pages/", name="api.pages")
+     */
+    public function pagesAction(Request $request)
+    {
+        $pageCollection = $this->getDoctrine()->getRepository('CmsBundle:Page')->findAll();
+
+        $pages = [];
+        foreach ($pageCollection as $page) {
+            $pages[] = $page->toArray();
+        }
+
+        return new JsonResponse($pages, 200);
+    }
+
 }

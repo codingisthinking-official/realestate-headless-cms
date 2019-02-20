@@ -24,7 +24,7 @@
                 </li>
             </ul>
             <h1><i class="fa fa-sitemap"></i> E-commerce</h1>
-            {{ render(controller('AdminBundle:TaxonomyItem:sidebarList', {'display': ['Blog Post DataSource'], 'currentItem': block('currentItem')})) }}
+            {{ render(controller('AdminBundle:TaxonomyItem:sidebarList', {'display': ['Pages'], 'currentItem': block('currentItem')})) }}
             {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <h1><i class="fa fa-cog"></i> Settings</h1>
                 <ul>
