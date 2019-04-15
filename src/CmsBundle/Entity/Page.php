@@ -28,6 +28,18 @@ class Page
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
+    protected $titleHeader;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    protected $subtitleHeader;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     */
     protected $slug;
 
     /**
@@ -93,6 +105,16 @@ class Page
         $this->position = $position;
     }
 
+    public function setTitleHeader($titleHeader)
+    {
+        $this->titleHeader = $titleHeader;
+    }
+
+    public function setSubtitleHeader($subtitleHeader)
+    {
+        $this->subtitleHeader = $subtitleHeader;
+    }
+
     public function setSlug($slug)
     {
         $this->slug = $slug;
@@ -103,6 +125,16 @@ class Page
         return $this->slug;
     }
 
+    public function getTitleHeader()
+    {
+        return $this->titleHeader;
+    }
+
+    public function getSubtitleHeader()
+    {
+        return $this->subtitleHeader;
+    }
+
     public function toArray()
     {
         return [
@@ -111,6 +143,8 @@ class Page
             'description' => $this->getDescription(),
             'position' => $this->getPosition(),
             'photo' => $this->getPhoto(),
+            'title_header' => $this->getTitleHeader(),
+            'subtitle_header' => $this->getSubtitleHeader(),
         ];
     }
 }

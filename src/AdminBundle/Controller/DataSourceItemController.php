@@ -38,7 +38,6 @@ class DataSourceItemController extends Controller
         }
 
         $responseData = $error ? [] : json_decode($response->getBody(), true);
-        $responseData['data'] = $responseData['posts'];
 
         $paginator = $this->get('knp_paginator');
 

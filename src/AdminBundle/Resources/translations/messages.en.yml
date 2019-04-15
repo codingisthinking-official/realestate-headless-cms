@@ -57,3 +57,8 @@ user.submit: "Change e-mail"
 datasource.blog-post.id: "Blog ID"
 datasource.blog-post.title: "Title"
 datasource.blog-post.short_description: "Short description"
+
+datasource.prices.subject: "Pozycja"
+datasource.prices.payload: "Dane"
+datasources.prices.status: "Status"
+datasource.prices.status: "Status"

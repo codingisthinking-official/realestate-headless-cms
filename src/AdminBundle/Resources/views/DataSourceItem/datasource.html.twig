@@ -20,14 +20,17 @@
                             {% for field in datasource.fieldsSplitted %}
                                 <td>
                                     {% if item[field] is defined %}
-                                        {{ item[field] }}
+                                        {{ item[field]|raw }}
                                     {% else %}
                                         <span class="label label-danger">no "{{ field }}" field.</span>
                                     {% endif %}
                                 </td>
                             {% endfor %}
                             <td>
-                                Actions
+                                {% for label, action in item._actions %}
+                                    <a href="{{ action }}" class="btn btn-info btn-xs" style="margin-bottom: 5px; color: #fff;">{{ label|capitalize }}</a>
+                                    <br>
+                                {% endfor %}
                             </td>
                         </tr>
                     {% endfor %}

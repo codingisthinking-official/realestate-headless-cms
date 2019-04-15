@@ -19,6 +19,36 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class ApiController extends Controller
 {
     /**
+     * @Route("/api/price_parameters/", name="api.price_parameters")
+     */
+    public function priceParametersAction(Request $request)
+    {
+        $pageCollection = $this->getDoctrine()->getRepository('CmsBundle:PriceParameter')->findAll();
+
+        $pages = [];
+        foreach ($pageCollection as $page) {
+            $pages[] = $page->toArray();
+        }
+
+        return new JsonResponse($pages, 200);
+    }
+
+    /**
+     * @Route("/api/type_of_buildings/", name="api.type_of_buildings")
+     */
+    public function typeOfBuildingsAction(Request $request)
+    {
+        $pageCollection = $this->getDoctrine()->getRepository('CmsBundle:BuildingType')->findAll();
+
+        $pages = [];
+        foreach ($pageCollection as $page) {
+            $pages[] = $page->toArray();
+        }
+
+        return new JsonResponse($pages, 200);
+    }
+
+    /**
      * @Route("/api/pages/", name="api.pages")
      */
     public function pagesAction(Request $request)
