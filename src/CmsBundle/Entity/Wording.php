@@ -25,7 +25,7 @@ class Wording
     protected $title;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=4000)
      * @Assert\NotBlank()
      */
     protected $wording;

@@ -60,5 +60,25 @@ datasource.blog-post.short_description: "Short description"
 
 datasource.prices.subject: "Pozycja"
 datasource.prices.payload: "Dane"
-datasources.prices.status: "Status"
 datasource.prices.status: "Status"
+datasource.prices.ip: "IP"
+
+datasource.prices_accepted.subject: "Pozycja"
+datasource.prices_accepted.payload: "Dane"
+datasource.prices_accepted.status: "Status"
+datasource.prices_accepted.ip: "IP"
+
+datasources.prices.status: "Status"
+
+datasource.prices.btn.edit: "Edit parameters"
+datasource.prices.btn.reject: "Reject customer's data"
+datasource.prices.btn.accept: "Accept data"
+datasource.prices.btn.pdf: "PDF report"
+datasource.prices.btn.file: "Preview bill attachment"
+
+datasource.prices_accepted.btn.edit: "Edit parameters"
+datasource.prices_accepted.btn.reject: "Reject customer's data"
+datasource.prices_accepted.btn.accept: "Accept data"
+datasource.prices_accepted.btn.pdf: "PDF report"
+datasource.prices_accepted.btn.file: "Preview bill attachment"
+

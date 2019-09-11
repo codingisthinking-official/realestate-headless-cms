@@ -43,10 +43,19 @@ class TaxonomyItemController extends Controller
             $taxonomyItemList = $taxonomyItemList
                 ->createQueryBuilder('i')
                 ->andWhere('i.title LIKE :query')
-                ->setParameter('query', '%' . $data['title'] . '%')
-                ->orderBy('i.id', 'desc');
+                ->setParameter('query', '%' . $data['title'] . '%');
+
+            if ($taxonomy->getId() == 4) {
+                $taxonomyItemList->orderBy('i.position', 'desc');
+            } else {
+                $taxonomyItemList->orderBy('i.id', 'desc');
+            }
         } else {
-            $taxonomyItemList = $taxonomyItemList->findBy([], ['id' => 'desc']);
+            if ($taxonomy->getId() == 4) {
+                $taxonomyItemList = $taxonomyItemList->findBy([], ['position' => 'asc']);
+            } else {
+                $taxonomyItemList = $taxonomyItemList->findBy([], ['id' => 'desc']);
+            }
         }
 
         $pager = $paginator->paginate(

@@ -48,6 +48,31 @@ class PriceParameter
      */
     protected $position;
 
+    /**
+     * @ORM\Column(type="string", length=1024, nullable=true)
+     */
+    protected $options;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    protected $groupName;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $fieldRequired;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $autocomplete;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $displayAverage;
+
     public function getId()
     {
         return $this->id;
@@ -56,6 +81,16 @@ class PriceParameter
     public function getTitle()
     {
         return $this->title;
+    }
+
+    public function getOptions()
+    {
+        return $this->options;
+    }
+    
+    public function getGroupName()
+    {
+        return $this->groupName;
     }
 
     public function setTitle($title)
@@ -103,15 +138,60 @@ class PriceParameter
         $this->position = $position;
     }
 
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    }
+
+    public function getFieldRequired()
+    {
+        return $this->fieldRequired;
+    }
+
+    public function setFieldRequired($fieldRequired)
+    {
+        $this->fieldRequired = $fieldRequired;
+    }
+
+    public function getAutocomplete()
+    {
+        return $this->autocomplete;
+    }
+
+    public function setAutocomplete($autocomplete)
+    {
+        $this->autocomplete = $autocomplete;
+    }
+
+    public function setDisplayAverage($displayAverage)
+    {
+        $this->displayAverage = $displayAverage;
+    }
+
+    public function getDisplayAverage()
+    {
+        return $this->displayAverage;
+    }
+
+    public function setGroupName($groupName)
+    {
+        $this->groupName = $groupName;
+    }
+
     public function toArray()
     {
         return [
             'id' => $this->getId(),
+            'group_name' => $this->getGroupName(),
             'title' => $this->getTitle(),
             'slug' => $this->getSlug(),
             'tooltip' => $this->getTooltip(),
             'type' => $this->getType(),
             'position' => $this->getPosition(),
+            'options' => $this->getOptions(),
+            'field_required' => $this->getFieldRequired(),
+            'autocomplete' => $this->getAutocomplete(),
+            'display_average' => $this->getDisplayAverage(),
         ];
     }
 }

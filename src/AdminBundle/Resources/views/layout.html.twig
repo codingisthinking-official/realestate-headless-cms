@@ -24,7 +24,7 @@
                 </li>
             </ul>
             <h1><i class="fa fa-sitemap"></i> E-commerce</h1>
-            {{ render(controller('AdminBundle:TaxonomyItem:sidebarList', {'display': ['Pages', 'Wording', 'Blog Posts', 'Prices', 'Type of building', 'Price parameters'], 'currentItem': block('currentItem')})) }}
+            {{ render(controller('AdminBundle:TaxonomyItem:sidebarList', {'display': ['Pages', 'Wording', 'Blog Posts', 'Prices', 'Accepted prices', 'Type of building', 'Price parameters'], 'currentItem': block('currentItem')})) }}
             {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <h1><i class="fa fa-cog"></i> Settings</h1>
                 <ul>
@@ -61,5 +61,6 @@
     <script type="text/javascript" src="/assets/bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
     <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
     <script type="text/javascript" src="/assets/js/admin.js"></script>
+    {%block javascripts %}{%endblock %}
 </body>
 </html>

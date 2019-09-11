@@ -1,13 +1,45 @@
 {% extends 'AdminBundle::layout.html.twig' %}
 
+{% block javascripts %}
+    <script type="text/javascript">
+        $('.btn--remove-all').click(function(e) {
+            var ids = [];
+            $(".batch-remove:checked").each(function() {
+                ids.push($(this).attr('id'));
+            });
+
+            if (ids.length > 0) {
+                location.href = $(this).attr('href') + ids.join(',');
+            }
+        
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    </script>
+{% endblock %}
 {% block currentItem %}datasource.{{ datasource.slug }}{% endblock %}
 {% block content %}
-    <div class="content--container">
+    <div class="content--container"
         <div class="container--white">
+            {% if datasource.slug in ['prices_accepted'] %}
+                <div class="action-list">
+                    <a class="btn btn-default" href="http://realestate-app.wiseweb.pl/accepted/csv/"><i class="fa fa-plus"></i> Export to CSV</a>
+                </div>
+                <br>
+            {% endif %}
+            {% if datasource.slug in ['prices'] %}
+                <div class="action-list">
+                    <a class="btn--remove-all btn btn-danger" href="http://realestate-app.wiseweb.pl/infos/remove/"><i class="fa fa-plus"></i> Remove selected</a>
+                </div>
+                <br>
+            {% endif %}
             {% if not error %}
                 <table class="table table-responsive table-hover table-condensed">
                     <thead>
                     <tr class="active">
+                        {% if datasource.slug in ['prices'] %}
+                            <th></th>
+                        {% endif %}
                         {% for field in datasource.fieldsSplitted %}
                             <th class="visible-md visible-lg">{{ ('datasource.' ~ datasource.slug ~ '.' ~ field)|trans }}</th>
                         {% endfor %}
@@ -17,6 +49,11 @@
                     <tbody>
                     {% for item in response.data %}
                         <tr>
+                        {% if datasource.slug in ['prices'] %}
+                            <th>
+                                <input type="checkbox" class="batch-remove" id="{{item.id}}" name="batch-remove[{{ item.id }}]">
+                            </th>
+                        {% endif %}
                             {% for field in datasource.fieldsSplitted %}
                                 <td>
                                     {% if item[field] is defined %}
@@ -28,7 +65,7 @@
                             {% endfor %}
                             <td>
                                 {% for label, action in item._actions %}
-                                    <a href="{{ action }}" class="btn btn-info btn-xs" style="margin-bottom: 5px; color: #fff;">{{ label|capitalize }}</a>
+                                    <a href="{{ action }}" class="btn btn-default btn-xs" style="margin-bottom: 5px;">{{ ('datasource.' ~ datasource.slug ~ '.btn.' ~ label)|trans }}</a>
                                     <br>
                                 {% endfor %}
                             </td>
@@ -42,6 +79,6 @@
             {% else %}
                 <div class="alert alert-danger">Error while fetching data from the DataSource.</div>
             {% endif %}
-        </div>
+        </div>        
     </div>
 {% endblock %}
