@@ -66,6 +66,16 @@ class PriceParameter
     /**
      * @ORM\Column(type="boolean")
      */
+    protected $yearCost = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $monthlyCost = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
     protected $autocomplete;
 
     /**
@@ -81,6 +91,11 @@ class PriceParameter
     public function getTitle()
     {
         return $this->title;
+    }
+    
+    public function getYearCost()
+    {
+        return $this->yearCost;
     }
 
     public function getOptions()
@@ -173,9 +188,24 @@ class PriceParameter
         return $this->displayAverage;
     }
 
+    public function getMonthlyCost()
+    {
+        return $this->monthlyCost;
+    }
+
     public function setGroupName($groupName)
     {
         $this->groupName = $groupName;
+    }
+
+    public function setYearCost($yearCost)
+    {
+        $this->yearCost = $yearCost;
+    }
+
+    public function setMonthlyCost($monthlyCost)
+    {
+        $this->monthlyCost = $monthlyCost;
     }
 
     public function toArray()
@@ -183,6 +213,8 @@ class PriceParameter
         return [
             'id' => $this->getId(),
             'group_name' => $this->getGroupName(),
+            'year_cost' => $this->getYearCost(),
+            'monthly_cost' => $this->getMonthlyCost(),
             'title' => $this->getTitle(),
             'slug' => $this->getSlug(),
             'tooltip' => $this->getTooltip(),
